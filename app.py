@@ -1,23 +1,16 @@
 import streamlit as st
 from groq import Groq
-
-# -----------------------------
-# 0) Page config
-# -----------------------------
+#Page config
 st.set_page_config(page_title="JSS: AI Study Advisor", page_icon="📚", layout="wide")
 
-# -----------------------------
-# 1) Groq client
-# -----------------------------
+#Groq 불러오기
 if "GROQ_API_KEY" not in st.secrets:
     st.error("GROQ_API_KEY가 Secrets에 없어!!!!!!")
     st.stop()
 
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# -----------------------------
-# 2) Sidebar: mode + profile
-# -----------------------------
+#사이드바(프로필 넣을 거)
 st.sidebar.title("System Mode (by digital infrastructure)")
 
 mode = st.sidebar.selectbox(
@@ -36,8 +29,7 @@ if st.sidebar.button("Reset chat"):
     st.rerun()
 
 # -----------------------------
-# 3) Build system prompt
-# -----------------------------
+#시스템
 def build_system_prompt(mode: str, goal: str, daily_time: str, level: str) -> str:
     if mode.startswith("Low-infrastructure"):
         return f"""
@@ -69,9 +61,7 @@ Task:
 Coach the student like a real study counselor: diagnose issue, propose plan, motivate.
 """
 
-# -----------------------------
-# 4) Chat UI
-# -----------------------------
+#채팅 ui
 st.title("JSS: AI Study Advisor")
 st.caption("A level-based study counseling chatbot (Groq demo).")
 
