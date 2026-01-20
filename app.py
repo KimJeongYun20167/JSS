@@ -10,7 +10,7 @@ st.set_page_config(page_title="JSS: AI Study Advisor", page_icon="📚", layout=
 # 1) Groq client
 # -----------------------------
 if "GROQ_API_KEY" not in st.secrets:
-    st.error("GROQ_API_KEY가 Secrets에 없어. Manage app → Settings → Secrets 확인해줘.")
+    st.error("GROQ_API_KEY가 Secrets에 없어!!!!!!")
     st.stop()
 
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
@@ -98,7 +98,7 @@ def groq_chat(system_prompt: str, history: list[dict], user_text: str) -> str:
     msgs.append({"role": "user", "content": user_text})
 
     completion = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama3-70b-8192",
         messages=msgs,
         temperature=0.7,
         max_tokens=400,
