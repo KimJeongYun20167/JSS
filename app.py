@@ -96,9 +96,9 @@ def groq_chat(system_prompt: str, history: list[dict], user_text: str) -> str:
         if m["role"] in ("user", "assistant"):
             msgs.append({"role": m["role"], "content": m["content"]})
     msgs.append({"role": "user", "content": user_text})
-
+##################################
     completion = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=msgs,
         temperature=0.7,
         max_tokens=400,
