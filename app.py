@@ -12,7 +12,15 @@ st.set_page_config(page_title="JSS: AI Study Advisor", page_icon="📚", layout=
 # Streamlit Secrets에 OPENAI_API_KEY가 있어야 함
 # 예) OPENAI_API_KEY = "sk-..."
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"].strip())
+api_key = st.secrets["OPENAI_API_KEY"]
 
+st.sidebar.write("Key startswith 'sk-':", api_key.startswith("sk-"))
+st.sidebar.write("Key length:", len(api_key))
+st.sidebar.write("Key is ASCII:", api_key.isascii())
+
+# non-ascii 문자 개수만 표시 (내용은 안 보여줌)
+bad = [c for c in api_key if not c.isascii()]
+st.sidebar.write("Non-ASCII char count:", len(bad))
 # -------------------------
 # 2) Helpers
 # -------------------------
@@ -91,7 +99,7 @@ def call_llm(user_text: str) -> str:
     history = st.session_state.chat[-12:]  # 너무 길어지는 거 방지
     api_messages = [{"role": "system", "content": system_prompt}] + history + [{"role": "user", "content": user_text}]
 
-    # ✅ 최신 방식: responses.create
+    # 최신 방식: responses.create
     response = client.responses.create(
         model="gpt-4.1-mini",
         input=api_messages,
