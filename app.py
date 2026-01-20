@@ -21,7 +21,11 @@ if st.sidebar.button("Reset chat"):
     st.rerun()
 
 # --- OpenAI client ---
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+from openai import OpenAI
+import streamlit as st
+
+api_key = st.secrets["OPENAI_API_KEY"].strip()  # <- 핵심: strip()
+client = OpenAI(api_key=api_key)
 
 # --- System prompt (tone + rules) ---
 def build_system_prompt(mode: str, goal: str, study_time: str, level: str) -> str:
