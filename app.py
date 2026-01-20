@@ -15,7 +15,7 @@ st.sidebar.title("System Mode")
 
 mode = st.sidebar.selectbox(
     "Choose mode",
-    ["Low-infrastructure (Voice/Simple)", "High-infrastructure (Personalized)"],
+    ["Basic Support Mode", "Advanced Support Mode"],
     index=0,
 )
 
@@ -31,9 +31,9 @@ if st.sidebar.button("Reset chat"):
 # -----------------------------
 #시스템
 def build_system_prompt(mode: str, goal: str, daily_time: str, level: str) -> str:
-    if mode.startswith("Low-infrastructure"):
+    if mode.startswith("Basic Support Mode"):
         return f"""
-You are JSS, a friendly AI study advisor for low-infrastructure settings.
+You are JSS, a friendly AI study advisor for basic support mode settings.
 Rules:
 - Use very simple English (CEFR A2–B1).
 - Keep answers short: 3–6 sentences.
@@ -63,7 +63,7 @@ Coach the student like a real study counselor: diagnose issue, propose plan, mot
 
 #채팅 ui
 st.title("JSS: AI Study Advisor")
-st.caption("A level-based study counseling chatbot (Groq demo).")
+st.caption("A level-based study counseling chatbot.")
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
