@@ -98,7 +98,7 @@ def groq_chat(system_prompt: str, history: list[dict], user_text: str) -> str:
     msgs.append({"role": "user", "content": user_text})
 
     completion = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.1-70b-versatile",
         messages=msgs,
         temperature=0.7,
         max_tokens=400,
