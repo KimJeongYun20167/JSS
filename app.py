@@ -11,7 +11,7 @@ if "GROQ_API_KEY" not in st.secrets:
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 #사이드바(프로필 넣을 거)
-st.sidebar.title("System Mode (by digital infrastructure)")
+st.sidebar.title("System Mode")
 
 mode = st.sidebar.selectbox(
     "Choose mode",
