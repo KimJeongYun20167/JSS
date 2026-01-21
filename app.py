@@ -62,7 +62,7 @@ Coach the student like a real study counselor: diagnose issue, propose plan, mot
 """
 
 #채팅 ui
-st.title("JSS: AI Study Advisor")
+st.title("JSS")
 st.caption("A level-based study counseling chatbot.")
 
 if "messages" not in st.session_state:
