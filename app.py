@@ -1,7 +1,7 @@
 import streamlit as st
 from groq import Groq
 #Page config
-st.set_page_config(page_title="JSS: AI Study Advisor", page_icon="📚", layout="wide")
+st.set_page_config(page_title="JSS", page_icon="📚", layout="wide")
 
 #Groq 불러오기
 if "GROQ_API_KEY" not in st.secrets:
